@@ -4,16 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-class GeneratorConfigurator {
+class GeneratorConfiguration {
 
 
     @Bean
-    GeneratorFacade generatorFacade(GeneratorRepository generatorRepository) {
+    GeneratorFacade generatorFacade(GeneratorMongoDBRepository generatorRepository) {
         GeneratorCreator generatorCreator = new GeneratorCreator();
         return new GeneratorFacade(generatorRepository, generatorCreator);
     }
 
-    GeneratorFacade generatorFacade() {
-        return null;
-    }
 }

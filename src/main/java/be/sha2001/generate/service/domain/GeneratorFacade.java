@@ -20,6 +20,9 @@ public class GeneratorFacade {
     }
 
     public void create(ServiceDefinitionDTO serviceDefinitionDTO) {
+
+        ServiceDefinition service = generatorCreator.fromDto(serviceDefinitionDTO);
+        generatorRepository.save(service);
     }
 
     public List<ServiceDefinitionDTO> getServices() {
@@ -27,6 +30,6 @@ public class GeneratorFacade {
     }
 
     public List<ServiceDefinitionDTO> getService(String name) {
-        return generatorRepository.findByName(name);
+        return generatorRepository.findByName(name).stream().map(ServiceDefinition::dto).collect(Collectors.toList());
     }
 }
